@@ -34,7 +34,7 @@ def get_cookies(request: Request): # Crucial: Rename from 'req' to 'request'
     refresh_token = request.cookies.get("refresh_token")
 
     # Pro-tip: Implement a quick sanity fallback validation if cookies are missing
-    if not access_token or not refresh_token:
+    if not access_token and not refresh_token:
         raise HTTPException(
             status_code=401,
             detail="Authentication cookies are missing or expired"
