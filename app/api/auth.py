@@ -4,8 +4,12 @@ from app.schames.auth import UserCreate, UserLogin, UserResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_async_db
 from app.dependancies.get_current_user import get_current_user
+from app.core.config import settings
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+
+## production security setup
+is_production = True if settings.enviroment != "development" else False
 
 
 @router.post("/register", response_model=UserResponse)
@@ -31,7 +35,7 @@ async def login(user: UserLogin, db: AsyncSession = Depends(get_async_db), respo
         key="access_token",
         value=tokens["access_token"],
         httponly=True,
-        secure=False,
+        secure=is_production,
         samesite="lax",
         max_age=900
     )
@@ -65,7 +69,7 @@ async def refresh(request: Request, response: Response, db: AsyncSession = Depen
         key="refresh_token",
         value=tokens["refresh_token"],
         httponly=True,
-        secure=False,
+        secure=is_production,
         samesite="lax",
         max_age=60 * 60 * 24 * 7  # 7 days
     )
@@ -74,7 +78,7 @@ async def refresh(request: Request, response: Response, db: AsyncSession = Depen
         key="access_token",
         value=tokens["access_token"],
         httponly=True,
-        secure=False,
+        secure=is_production,
         samesite="lax",
         max_age=900
     )
