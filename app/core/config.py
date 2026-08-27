@@ -16,4 +16,6 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int
     refresh_token_expire_days: int
 
+    enviroment: str
+
 settings = Settings()
