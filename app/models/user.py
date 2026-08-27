@@ -17,5 +17,3 @@ class User(Base):
     password: Mapped[str] = mapped_column(nullable=False)
     is_active: Mapped[bool] = mapped_column(default=True)
     role: Mapped[Role] = mapped_column(default=Role.USER)
-
-    chats: Mapped[list["Chat"]] = relationship("Chat", back_populates="user", cascade="all, delete-orphan")
