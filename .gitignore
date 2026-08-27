@@ -1,0 +1,6 @@
+./app/models/chat
+./app/models/message
+./app/models/__init__.py
+.env
+.venv
+__pycache__/
