@@ -9,11 +9,9 @@ from alembic import context
 from app.core.db import Base
 from app.core.config import settings
 from app.models.user import User
-from app.models.chat import Chat
-from app.models.message import Message
 
 # Import all models to ensure they are registered with Base
-__all__ = ["Base", "User", "Chat", "Message"]
+__all__ = ["Base", "User"]
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
