@@ -33,7 +33,7 @@ async def login(user: UserLogin, db: AsyncSession = Depends(get_async_db), respo
         httponly=True,
         secure=False,
         samesite="lax",
-        max_age=1800
+        max_age=900
     )
 
     return {
@@ -76,7 +76,7 @@ async def refresh(request: Request, response: Response, db: AsyncSession = Depen
         httponly=True,
         secure=False,
         samesite="lax",
-        max_age=1800
+        max_age=900
     )
 
     return {
